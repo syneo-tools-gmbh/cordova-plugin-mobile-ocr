@@ -106,7 +106,14 @@ public class Textocr extends CordovaPlugin {
                         {
                             if(!argimagestr.trim().equals(""))
                             {
-                                byte[] decodedString = Base64.decode(argimagestr, Base64.DEFAULT);
+                                String[] parts = argimagestr.split(",");
+                                String b64string = "";
+                                if (parts.length > 0) {
+                                    b64string = parts[1];
+                                } else {
+                                    b64string = parts[0];
+                                }
+                                byte[] decodedString = Base64.decode(b64string, Base64.DEFAULT);
                                 bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             }
                             else
